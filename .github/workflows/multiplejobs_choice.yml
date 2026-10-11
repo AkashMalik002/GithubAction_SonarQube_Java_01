@@ -38,3 +38,5 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
+
+# Even after selecting one job it's still running both the jobs
