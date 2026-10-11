@@ -1,0 +1,53 @@
+name: multiple runners and choose jobs
+on:
+ workflow_dispatch:
+  inputs:
+    runner:
+      description: "Select the runner"
+      required: true
+      type: choice
+      options:
+        - ubuntu-latest
+        - ubuntu-22.04
+        - windows-latest
+    jobs-name:
+      description: "select the job to run"
+      required: true
+      type: choice
+      options:
+        - jobmaven
+          - jobsonar     
+jobs:
+ jobmaven:
+   if: ${{ github.event.inputs.jobs-name == 'jobmaven'}}
+   runs-on: ${{github.event.inputs.runner}}
+   steps:
+     - name: checkout the code on runner VM
+       uses: actions/checkout@v4
+     - name: Setup Java
+       uses: actions/setup-java@v4
+       with:
+         java-version: '21'
+         distribution: 'temurin'
+     - name: Build the code using maven
+       run: mvn clean install
+ jobsonnar:
+   if: ${{ github.event.inputs.jobs-name == 'jobsonnar'}}
+   runs-on: ${{github.event.inputs.runner}}
+   steps:
+     - name: checkout the code on the runner VM
+       uses: actions/checkout@v4
+     - name: Setup Java
+       uses: actions/setup-java@v4
+       with:
+         java-version: '21'
+         distribution: 'temurin'
+     - name: Code Coverage using sonarqube
+       run: mvn -B verify sonar:sonar -Dsonar.projectKey=githubaction-sonarqube_sonarqube-action-project -Dsonar.organization=githubaction-sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
+   env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
+    steps:
+    - name: build code
+      run: echo "test the code on runner" 
