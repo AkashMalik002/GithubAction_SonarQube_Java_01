@@ -16,7 +16,7 @@ on:
       type: choice
       options:
         - jobmaven
-          - jobsonar     
+        - jobsonar     
 jobs:
  jobmaven:
    if: ${{ github.event.inputs.jobs-name == 'jobmaven'}}
