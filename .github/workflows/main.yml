@@ -1,5 +1,5 @@
 name: COde COverafge workflow using SonarQube
-on: push
+on: workflow_dispatch # push
 jobs:
  jobs_sonnar:
    runs-on: ubuntu-latest
