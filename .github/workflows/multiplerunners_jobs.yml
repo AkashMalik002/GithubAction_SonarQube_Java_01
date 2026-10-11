@@ -48,3 +48,4 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}} 
+# this yml is not working on windows-latest runner.
