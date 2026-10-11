@@ -1,4 +1,4 @@
-name: COde COverafge workflow using SonarQube
+name: Workflow to build mutiple job run
 on: push
 jobs:
  jobs_maven:
