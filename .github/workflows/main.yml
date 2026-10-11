@@ -12,7 +12,7 @@ jobs:
          java-version: '21'
          distribution: 'temurin'
      - name: Code Coverage using sonarqube
-       run: mvn -B verify sonar:sonar -Dsonar.projectKey=githubaction-sonarqube_sonarqube-action-project -Dsonar.organization=sgithubaction-sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
+       run: mvn -B verify sonar:sonar -Dsonar.projectKey=githubaction-sonarqube_sonarqube-action-project -Dsonar.organization=githubaction-sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
    env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
