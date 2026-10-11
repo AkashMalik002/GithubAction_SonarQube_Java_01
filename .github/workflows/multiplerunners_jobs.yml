@@ -47,7 +47,4 @@ jobs:
    env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
-    steps:
-    - name: build code
-      run: echo "test the code on runner" 
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}} 
