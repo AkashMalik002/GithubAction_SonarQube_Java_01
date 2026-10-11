@@ -1,5 +1,5 @@
 name: Workflow to build mutiple job run
-on: push
+on: workflow_dispatch      # push
 jobs:
  jobs_maven:
    runs-on: ubuntu-latest
