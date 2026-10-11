@@ -1,0 +1,31 @@
+name: COde COverafge workflow using SonarQube
+on: push
+jobs:
+ jobs_maven:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout the code on runner VM
+       uses: actions/checkout@v4
+     - name: Setup Java
+       uses: actions/setup-java@v4
+       with:
+         java-version: '21'
+         distribution: 'temurin'
+     - name: Build the code using maven
+       run: mvn clean install
+ jobs_sonnar:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout the code on the runner VM
+       uses: actions/checkout@v4
+     - name: Setup Java
+       uses: actions/setup-java@v4
+       with:
+         java-version: '21'
+         distribution: 'temurin'
+     - name: Code Coverage using sonarqube
+       run: mvn -B verify sonar:sonar -Dsonar.projectKey=githubaction-sonarqube_sonarqube-action-project -Dsonar.organization=githubaction-sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
+   env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       # GITHUB_TOKEN: Automatically generated token for GitHub API authentication (with limited scope).
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
