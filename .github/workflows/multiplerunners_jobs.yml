@@ -30,7 +30,7 @@ jobs:
          java-version: '21'
          distribution: 'temurin'
      - name: Build the code using maven
-       run: mvn clean install
+       run: mvn clean install -e
  jobsonnar:
    if: ${{ github.event.inputs.jobs-name == 'jobsonnar'}}
    runs-on: ${{github.event.inputs.runner}}
